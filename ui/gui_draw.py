@@ -70,7 +70,7 @@ class GUIDraw(QWidget):
         self.image_loaded = True
         self.image_file = image_file
         print(image_file)
-        im_bgr = cv2.imread(image_file)
+        im_bgr = cv2.imread(image_file.decode("utf-8"))
         self.im_full = im_bgr.copy()
         # get image for display
         h, w, c = self.im_full.shape
@@ -106,7 +106,7 @@ class GUIDraw(QWidget):
         self.im_mask0 = np.zeros((1, self.load_size, self.load_size))
         self.brushWidth = 2 * self.scale
 
-        self.model.load_image(image_file)
+        self.model.load_image(image_file.decode('utf-8'))
 
         if (self.dist_model is not None):
             self.dist_model.set_image(self.im_rgb)
@@ -216,7 +216,7 @@ class GUIDraw(QWidget):
         self.eraseMode = not self.eraseMode
 
     def load_image(self):
-        img_path = unicode(QFileDialog.getOpenFileName(self, 'load an input image'))
+        img_path = str(QFileDialog.getOpenFileName(self, 'load an input image'))
         self.init_result(img_path)
 
     def save_result(self):
