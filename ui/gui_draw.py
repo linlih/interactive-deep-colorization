@@ -224,7 +224,7 @@ class GUIDraw(QWidget):
         path, ext = os.path.splitext(path)
 
         suffix = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-        save_path = "_".join([path, self.method, suffix])
+        save_path = "_".join([path.decode('utf-8'), self.method, suffix])
 
         print('saving result to <%s>\n' % save_path)
         if not os.path.exists(save_path):
